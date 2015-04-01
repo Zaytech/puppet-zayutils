@@ -40,7 +40,7 @@ class zayutils {
   package { 'tzdata': ensure => latest }
   
   class { '::ntp':
-    servers => [ 'a.ntp.br', 'a.ntp.br', 'a.ntp.br' ],
+    servers => [ 'a.ntp.br', 'b.ntp.br', 'c.ntp.br' ],
   }
 
 
