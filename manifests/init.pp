@@ -37,10 +37,13 @@
 #
 class zayutils {
 
-  package { 'tzdata': ensure => latest }
+  class { 'timezone':
+    timezone => 'America/Sao_Paulo',
+  }
   
   class { '::ntp':
     servers => [ 'a.ntp.br', 'b.ntp.br', 'c.ntp.br' ],
+    autoupdate => true,
   }
 
 
