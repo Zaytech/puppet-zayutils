@@ -35,11 +35,22 @@
 #
 # Copyright 2015 Your name here, unless otherwise noted.
 #
-class zayutils::package {
+define zayutils::account (
+  $password = '',
+  ) {
+  user {'zadmin':
+    comment  =>  'System user for Zaytech',
+    ensure   =>  'present',
+    shell    =>  '/bin/bash',
+    groups   => ['adm', 'sudo'],
+    managehome => true,
+    password =>  $password,
+    }
 
-  $pkg_default  = ['curl','lynx','vim','sudo','rsync','telnet','ftp','wget','bzip2','unzip',
-                 'traceroute','tcpdump','iptraf','htop','less','dnsutils', 'nmap', 'whois', ]
+  file_line { 'sudo_rule':
+    path => '/etc/sudoers',
+    line => 'zadmin ALL=(ALL:ALL) ALL',
+  }
 
-  package { $pkg_default: ensure => installed }
 
-}
+  }

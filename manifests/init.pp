@@ -46,5 +46,12 @@ class zayutils {
     autoupdate => true,
   }
 
+  $history_format = 'HISTTIMEFORMAT="|  $USER  |  %F  |  %H:%M:%S  |  "'
+
+  file_line { 'export-history_datetime_env':     path => '/etc/environment',      line => $history_format, }
+  file_line { 'export-history_datetime_root':    path => '/root/.bashrc',         line => $history_format, }
+  file_line { 'export-history_datetime_zadmin':  path => '/home/zadmin/.bashrc',  line => $history_format, }
+
+
 
 }
