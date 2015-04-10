@@ -1,0 +1,13 @@
+##########################################
+#/etc/network/interfaces for puppet server 
+
+auto lo
+iface lo inet loopback
+
+<% interfaces.each do |x| -%>
+
+auto <%= x[0] %>
+iface <%= x[0] %> inet <%= x[1] %>
+  <% x[2].each do |options| -%>  <%= options %>  
+  <% end -%>
+<% end -%>

@@ -1,0 +1,16 @@
+######################################
+# VPN for <%= @name %> - side <%= side %>
+
+dev tun
+proto udp
+ifconfig <%= confs['ifconfig'] %>
+port <%= confs['port'] %>
+
+secret /etc/openvpn/keys/<%= @name %>.key
+
+keepalive 10 120
+comp-lzo
+verb 3
+
+log-append /var/log/openvpn/openvpn.log
+status /var/log/openvpn/<%= @name %>_status.log
